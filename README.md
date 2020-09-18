@@ -4,4 +4,4 @@ Implementación de una red hopfield sencilla para reconstruir letras corruptas d
 PATRONES DE IMAGENES
 Letras del Alfabeto
 
-ttps://raw.githubusercontent.com/KattyGZC/RED_HOPFIELD/master/letraA.png
+https://raw.githubusercontent.com/KattyGZC/RED_HOPFIELD/master/letraA.png
