@@ -9,6 +9,7 @@ from tkinter import Frame, Button, filedialog, messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 import logging
+from pathlib import Path
 
 from src.config.settings import config
 from src.models.hopfield_network import HopfieldNetwork
@@ -158,10 +159,17 @@ class MainWindow(tk.Frame):
     def _load_training_patterns(self) -> None:
         """Carga los patrones de entrenamiento."""
         try:
+            # Directorio inicial: data/patterns si existe
+            initial_dir = Path('data/patterns')
+            if not initial_dir.exists():
+                initial_dir = Path.cwd()
+
             paths = filedialog.askopenfilenames(
                 title="Seleccionar Imágenes de Patrones",
+                initialdir=str(initial_dir),
                 filetypes=(
                     ("Imágenes PNG", "*.png"),
+                    ("Todas las imágenes", "*.png *.jpg *.jpeg *.bmp"),
                     ("Todos los archivos", "*.*")
                 )
             )
@@ -206,10 +214,19 @@ class MainWindow(tk.Frame):
     def _load_corrupt_pattern(self) -> None:
         """Carga el patrón corrupto."""
         try:
+            # Directorio inicial: data/corrupted si existe
+            initial_dir = Path('data/corrupted')
+            if not initial_dir.exists():
+                initial_dir = Path('data/patterns')
+            if not initial_dir.exists():
+                initial_dir = Path.cwd()
+
             path = filedialog.askopenfilename(
                 title="Seleccionar Patrón Corrupto",
+                initialdir=str(initial_dir),
                 filetypes=(
                     ("Imágenes PNG", "*.png"),
+                    ("Todas las imágenes", "*.png *.jpg *.jpeg *.bmp"),
                     ("Todos los archivos", "*.*")
                 )
             )

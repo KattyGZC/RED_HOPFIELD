@@ -33,12 +33,28 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Uso
+### Generar Patrones (Opcional)
 
-1. **Cargar Patrones:** Click en "Seleccionar imágenes" y elige 4 imágenes PNG de 44x60 px
-2. **Cargar Corrupto:** Click en "Seleccionar imagen" y elige una letra con ruido
+Si no tienes imágenes de patrones, puedes generarlas:
+
+```bash
+# Generar letras AEIOU
+python scripts/generate_patterns.py --letters "AEIOU"
+
+# Crear versiones corruptas
+python scripts/corrupt_patterns.py data/patterns/ --rates "0.1,0.2,0.3"
+```
+
+Ver [scripts/README.md](scripts/README.md) y [data/README.md](data/README.md) para más detalles.
+
+### Uso de la Aplicación
+
+1. **Cargar Patrones:** Click en "Seleccionar imágenes" → navega a `data/patterns/` → selecciona 4 imágenes
+2. **Cargar Corrupto:** Click en "Seleccionar imagen" → navega a `data/corrupted/` → selecciona 1 imagen
 3. **Predecir:** Click en "Predecir patrón" para reconstruir la letra original
 4. **Ver Resultado:** La letra reconstruida aparece con estadísticas de similitud
+
+**Nota:** La UI abre automáticamente las carpetas `data/patterns/` y `data/corrupted/` por defecto.
 
 ---
 
@@ -51,6 +67,13 @@ RED_HOPFIELD/
 │   ├── models/            # Red de Hopfield
 │   ├── utils/             # Utilidades y validadores
 │   └── ui/                # Interfaz gráfica
+├── data/                  # 🖼️ Imágenes de patrones
+│   ├── patterns/          # Patrones limpios (44x60 px)
+│   ├── corrupted/         # Patrones con ruido
+│   └── examples/          # Ejemplos y demos
+├── scripts/               # 🛠️ Scripts de utilidad
+│   ├── generate_patterns.py   # Generar letras
+│   └── corrupt_patterns.py    # Corromper patrones
 ├── tests/                 # Suite de tests (31 tests)
 ├── docs/                  # Documentación completa
 ├── legacy/                # Versiones anteriores
